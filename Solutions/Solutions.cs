@@ -802,4 +802,35 @@ namespace ProjectEuler.Solutions
 
         #endregion
     }
+
+    public static class Tests
+    {
+        public static void GetHashCodes_Test()
+        {
+            string a = "(0,2)->(1,2)";
+            string b = "(0,2)->(1,2)";
+            string c = "(0,2)->(0,1)";
+
+            //string a,b should have the same HashCode [1346283806]
+            //string c should have a different HashCode [219800134]
+            Console.WriteLine("a={1}{0}b={2}{0}c={3}{0}", Environment.NewLine,
+                a.GetHashCode(), b.GetHashCode(), c.GetHashCode());
+
+            Queue<string> q1 = new Queue<string>();
+            q1.Enqueue(a);
+            q1.Enqueue(c);
+
+            Queue<string> q2 = new Queue<string>();
+            q2.Enqueue(b);
+            q2.Enqueue(c);
+
+            //I guessed that both q1,q2 should have the same HashCode.  I was WRONG.
+            //The HashCodes for these two change every instantiation.  There must be a piece of the 
+            // data structure that changes upon each instantiation.  
+            Console.WriteLine("q1={1}{0}q2={2}{0}", Environment.NewLine,
+                q1.GetHashCode(), q2.GetHashCode());
+
+            Console.Read();
+        }
+    }
 }
