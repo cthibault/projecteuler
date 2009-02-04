@@ -35,4 +35,36 @@ namespace ProjectEuler
                 Exponent = toValue;
         }
     }
+    public struct Triangle
+    {
+        public double SideA;
+        public double SideB;
+        public double SideC;
+        public Triangle(int a, int b, int c)
+        {
+            SideA = a;
+            SideB = b;
+            SideC = c;
+        }
+        public double SumOfSides()
+        {
+            return SideA + SideB + SideC;
+        }
+        public double ProductOfSides()
+        {
+            return SideA * SideB * SideC;
+        }
+        public bool IsPythagoreanTriplet()
+        {
+            bool retVal = true;
+
+            if ((SideA > SideB) || (SideB > SideC))
+                retVal = false;
+
+            if (Math.Pow(SideA, 2) + Math.Pow(SideB, 2) != Math.Pow(SideC, 2))
+                retVal = false;
+
+            return retVal;
+        }
+    }
 }
