@@ -41,6 +41,7 @@ namespace ProjectEuler.Solutions
                 case "LIST":
                 case "L":
                     break;
+                case "":
                 case "EXIT":
                 case "E":
                     _exit = true;
@@ -115,6 +116,9 @@ namespace ProjectEuler.Solutions
                     break;
                 case 14:
                     Solution.Problem14();
+                    break;
+                case 15:
+                    Solution.Problem15();
                     break;
                 case 16:
                     Solution.Problem16();
