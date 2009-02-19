@@ -779,7 +779,7 @@ namespace ProjectEuler.Solutions
         #endregion
 
         #region Problem 15
-        //TODO: Finish
+
         public static void Problem15()
         {
             //QUESTION
@@ -800,8 +800,11 @@ namespace ProjectEuler.Solutions
         {
             double routes = 0;
             List<KeyValuePair<int, List<double>>> rows = new List<KeyValuePair<int, List<double>>>();
+            //build pascal's triangle to the level requested
             KeyValuePair<int, List<double>> row = _buildPascalsTriangle(ref rows, level);
 
+            //the number of routes equals the sum of the squares of each term in the requested row of 
+            // pascal's triangle
             foreach (double term in row.Value)
                 routes += (term * term);
 
@@ -811,11 +814,14 @@ namespace ProjectEuler.Solutions
         {
             KeyValuePair<int, List<double>> previousRow;
             KeyValuePair<int, List<double>> currentRow;
+            
+            //base row
             if (level == 0)
             {
                 currentRow = new KeyValuePair<int, List<double>>(0, new List<double>() { 1 });
                 rows.Add(currentRow);
             }
+            //build row based on previous row
             else
             {
                 previousRow = _buildPascalsTriangle(ref rows, level - 1);
@@ -889,69 +895,5 @@ namespace ProjectEuler.Solutions
 
             Console.Read();
         }
-
-        /* Pascals Triangle Algorithm
-        public static void PascalsTriangle(int numberOfLevels)
-        {
-            List<KeyValuePair<int, List<double>>> rows =
-                new List<KeyValuePair<int, List<double>>>();
-
-            buildPascalsTriangle(ref rows, numberOfLevels);
-            consolePrintPascalsTriangle(rows);
-            filePrintPascalsTriangle(rows);
-            
-            Console.Read();
-        }      
-        private static KeyValuePair<int, List<double>> buildPascalsTriangle(ref List<KeyValuePair<int, List<double>>> rows, int level)
-        {
-            KeyValuePair<int, List<double>> previousRow;
-            KeyValuePair<int, List<double>> currentRow;
-            if (level == 0)
-            {
-                currentRow = new KeyValuePair<int, List<double>>(0, new List<double>() { 1 });
-                rows.Add(currentRow);
-            }
-            else
-            {
-                previousRow = buildPascalsTriangle(ref rows, level - 1);
-                currentRow = new KeyValuePair<int, List<double>>(level, new List<double>() { 1 });
-
-                for (int i = 1; i < previousRow.Value.Count; i++)
-                {
-                    currentRow.Value.Add(previousRow.Value[i - 1] + previousRow.Value[i]);
-                }
-                currentRow.Value.Add(1);
-                rows.Add(currentRow);
-            }
-
-            return currentRow;
-        }
-        private static void consolePrintPascalsTriangle(List<KeyValuePair<int, List<double>>> rows)
-        {
-            foreach (KeyValuePair<int, List<double>> row in rows)
-            {
-                Console.Write("{0}| ", row.Key);
-                foreach (double term in row.Value)
-                {
-                    Console.Write("{0} ", term);
-                }
-                Console.WriteLine();
-            }
-        }
-        private static void filePrintPascalsTriangle(List<KeyValuePair<int, List<double>>> rows)
-        {
-            StreamWriter writer = new StreamWriter(@".\PascalTriangleOutput.txt", false);
-            foreach (KeyValuePair<int, List<double>> row in rows)
-            {
-                writer.Write("{0}| ", row.Key);
-                foreach (double term in row.Value)
-                {
-                    writer.Write("{0} ", term);
-                }
-                writer.WriteLine();
-            }
-            writer.Close();
-        }
-        */
     }
 }
