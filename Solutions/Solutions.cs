@@ -862,13 +862,7 @@ namespace ProjectEuler.Solutions
         }
         private static IntX P16_calculation(IntX number)
         {
-            IntX sum = 0;
-            while (number > 0)
-            {
-                sum += number % 10;
-                number /= 10;
-            }
-            return sum;
+            return number.SumOfDigits();
         }
 
         #endregion
@@ -992,6 +986,32 @@ namespace ProjectEuler.Solutions
                     break;
             }
             return total;
+        }
+
+        #endregion
+
+        #region Problem 20
+
+        public static void Problem20()
+        {
+            //QUESTION
+            Console.WriteLine("PROBLEM 20");
+            Console.WriteLine("The sum of the digits in the number 100!");
+
+            timer.Reset();
+            timer.Start();
+            IntX answer = P20_calculation(100);
+            timer.Stop();
+
+            //ANSWER
+            Console.WriteLine(string.Format("{0:N}", answer));
+            Console.WriteLine("Elapsed Time: {0} milliseconds", timer.ElapsedMilliseconds.ToString());
+            Console.ReadLine();
+        }
+        private static IntX P20_calculation(IntX number)
+        {
+            IntX factorial = number.Factorial();
+            return factorial.SumOfDigits();
         }
 
         #endregion

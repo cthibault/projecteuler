@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Oyster.Math;
 
 namespace ProjectEuler
 {
@@ -187,6 +188,24 @@ namespace ProjectEuler
                 primeFactors.Add(new TermWithExponent(number, 1));
 
             return primeFactors;
+        }
+
+        public static IntX Factorial(this IntX number)
+        {
+            if (number < 0)
+                return 0;
+            return (number == 0) ? 1 : number * Factorial(number - 1);
+        }
+
+        public static IntX SumOfDigits(this IntX number)
+        {
+            IntX sum = 0;
+            while (number > 0)
+            {
+                sum += number % 10;
+                number /= 10;
+            }
+            return sum;
         }
     }
 }
