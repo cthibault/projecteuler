@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numeric;
+using Oyster.Math;
 
 namespace ProjectEuler.Solutions
 {
@@ -841,7 +843,7 @@ namespace ProjectEuler.Solutions
         #endregion
 
         #region Problem 16
-        //TODO: Finish
+
         public static void Problem16()
         {
             //QUESTION
@@ -850,7 +852,7 @@ namespace ProjectEuler.Solutions
 
             timer.Reset();
             timer.Start();
-            double answer = P16_calculation(Math.Pow(2, 1000));
+            IntX answer = P16_calculation(IntX.Pow(2, 1000));
             timer.Stop();
 
             //ANSWER
@@ -858,9 +860,15 @@ namespace ProjectEuler.Solutions
             Console.WriteLine("Elapsed Time: {0} milliseconds", timer.ElapsedMilliseconds.ToString());
             Console.ReadLine();
         }
-        private static double P16_calculation(double number)
+        private static IntX P16_calculation(IntX number)
         {
-            return 0;
+            IntX sum = 0;
+            while (number > 0)
+            {
+                sum += number % 10;
+                number /= 10;
+            }
+            return sum;
         }
 
         #endregion
