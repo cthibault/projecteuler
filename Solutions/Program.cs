@@ -123,7 +123,9 @@ namespace ProjectEuler.Solutions
                 case 16:
                     Solution.Problem16();
                     break;
-
+                case 17:
+                    Solution.Problem17();
+                    break;
                 default:
                     //_mainMenu(string.Format("I'm sorry, but question {0} hasn't been answered yet.", question.ToString()));
                     message = string.Format("I'm sorry, but question {0} hasn't been answered yet.", question.ToString());

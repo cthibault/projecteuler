@@ -864,6 +864,129 @@ namespace ProjectEuler.Solutions
         }
 
         #endregion
+
+        #region Problem 17
+
+        public static void Problem17()
+        {
+            //QUESTION
+            Console.WriteLine("PROBLEM 17");
+            Console.WriteLine("How many letters would be used to write out the numbers 1 through 1000?");
+
+            timer.Reset();
+            timer.Start();
+            double answer = P17_calculation();
+            timer.Stop();
+
+            //ANSWER
+            Console.WriteLine(string.Format("{0:N}", answer));
+            Console.WriteLine("Elapsed Time: {0} milliseconds", timer.ElapsedMilliseconds.ToString());
+            Console.ReadLine();
+        }
+        private static double P17_calculation()
+        {
+            int[] number = new int[4];
+            double totalNumberOfLetters = 0;
+            for (int i = 1; i <= 1000; i++)
+            {
+                number = _splitNumber(i);
+                totalNumberOfLetters += _getNumberOfLetters(number);
+            }
+            return totalNumberOfLetters;
+        }
+        private static int[] _splitNumber(int number)
+        {
+            int[] numbers = new int[4];
+
+            numbers[0] = number / 1000;
+            number %= 1000;
+
+            numbers[1] = number / 100;
+            number %= 100;
+
+            numbers[2] = number / 10;
+            number %= 10;
+
+            numbers[3] = number;
+
+            return numbers;
+        }
+        private static double _getNumberOfLetters(int[] number)
+        {
+            double total = 0;
+            if (number[0] != 0)
+                total += _getNumberOfLetters(number[0]) + _getNumberOfLetters(1000);
+            if (number[1] != 0)
+                total += _getNumberOfLetters(number[1]) + _getNumberOfLetters(100);
+            if (number[2] * 10 + number[3] < 9)
+                total += _getNumberOfLetters(number[3]);
+            else if (number[2] * 10 + number[3] < 20)
+                total += _getNumberOfLetters(number[2] * 10 + number[3]);
+            else
+                total += _getNumberOfLetters(number[2] * 10) + _getNumberOfLetters(number[3]);
+
+            int temp = number[0] * 1000 + number[1] * 100 + number[2] * 10 + number[3];
+            if ((temp > 100) && (temp % 100 != 0))
+                total += 3;     //add 3 for the word 'and'
+
+            return total;
+        }
+        private static double _getNumberOfLetters(int number)
+        {
+            double total = 0;
+            switch (number)
+            {
+                case 1:
+                case 2:
+                case 6:
+                case 10:
+                    total = 3;
+                    break;
+                case 4:
+                case 5:
+                case 9:
+                    total = 4;
+                    break;
+                case 3:
+                case 7:
+                case 8:
+                case 40:
+                case 50:
+                case 60:
+                    total = 5;
+                    break;
+                case 11:
+                case 12:
+                case 20:
+                case 30:
+                case 80:
+                case 90:
+                    total = 6;
+                    break;
+                case 15:
+                case 16:
+                case 70:
+                case 100:
+                    total = 7;
+                    break;
+                case 13:
+                case 14:
+                case 18:
+                case 19:
+                case 1000:
+                    total = 8;
+                    break;
+                case 17:
+                    total = 9;
+                    break;
+                default:
+                    total = 0;
+                    break;
+            }
+            return total;
+        }
+
+        #endregion
     }
 
     public static class Tests
