@@ -25,11 +25,8 @@ namespace ProjectEuler.Solutions
                         Title = "Bruteforce", 
                         WarmupRounds = 5,
                         BenchmarkRounds = 1000,
-                        Algorithm = new Func<long>(problem1_1)
-                    },
-                    new Approach
-                    {
-                        
+                        //Algorithm = new Func<long>(problem1_1)
+                        Algorithm = new Algorithm<long>(new Func<long>(problem1_1))
                     }
                 },
                 new Problem(2, "What is the sum of all the even-valued terms in the Fibonacci Sequence which do not exceed 4,000,000?")
@@ -39,7 +36,8 @@ namespace ProjectEuler.Solutions
                         Title = "Bruteforce", 
                         WarmupRounds = 5,
                         BenchmarkRounds = 1000, 
-                        Algorithm = new Func<long>(problem2_1)
+                        //Algorithm = new Func<long>(problem2_1)
+                        Algorithm = new Algorithm<long>(new Func<long>(problem2_1))
                     }
                 },
                 new Problem(3, "What is the largest prime factor of the number 600851475143?")
@@ -48,7 +46,8 @@ namespace ProjectEuler.Solutions
                     { 
                         WarmupRounds = 5, 
                         BenchmarkRounds = 1000, 
-                        Algorithm = new Func<long>(problem3_1)
+                        //Algorithm = new Func<long>(problem3_1)
+                        Algorithm = new Algorithm<long>(new Func<long>(problem3_1))
                     }
                 },
 
@@ -58,7 +57,8 @@ namespace ProjectEuler.Solutions
                     {
                         WarmupRounds = 5,
                         BenchmarkRounds = 1000,
-                        Algorithm = new Func<long>(problem16_1)
+                        //Algorithm = new Func<long>(problem16_1)
+                        Algorithm = new Algorithm<IntX>(new Func<IntX>(problem16_1))
                     }
                 }
             };
@@ -86,7 +86,7 @@ namespace ProjectEuler.Solutions
             int sum = 0;
             for (int i = 1; i < 1000; i++)
                 if (i.IsMultiple(3) || i.IsMultiple(5))
-                    sum += 1;
+                    sum += i;
             return sum;
         }
         private long problem2_1()
@@ -105,9 +105,9 @@ namespace ProjectEuler.Solutions
         }
         //private long problem4_1() { }
 
-        private long problem16_1()
+        private IntX problem16_1()
         {
-            return 0;
+            return IntX.Pow(2, 1000).SumOfDigits();
         }
 
         #endregion
