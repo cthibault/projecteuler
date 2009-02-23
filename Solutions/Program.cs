@@ -45,6 +45,7 @@ namespace ProjectEuler.Solutions
 
                     case "TEST":
                     case "T":
+                        Solution.Problem13();
                         break;
 
                     default:

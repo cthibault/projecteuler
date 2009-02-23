@@ -717,7 +717,6 @@ namespace ProjectEuler.Solutions
                 double t = Convert.ToDouble(number.Substring(i, digitLenth - 1).ToString());
                 sum += Convert.ToDouble(number.Substring(i, digitLenth - 1).ToString());
             }
-            
             return sum;
         }
 
