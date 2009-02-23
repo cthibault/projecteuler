@@ -13,8 +13,8 @@ namespace ProjectEuler.Solutions
         public Approach()
         {
             Title = "Unnamed";
-            WarmupRounds = 1;
-            BenchmarkRounds = 1;
+            WarmupRounds = 5;
+            BenchmarkRounds = 1000;
         }
         public Approach(string title, int warmupRounds, int benchmarkRounds)
         {
