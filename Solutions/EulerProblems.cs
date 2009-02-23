@@ -167,6 +167,16 @@ namespace ProjectEuler.Solutions
                         Algorithm = new Algorithm<int>(new Func<int>(problem17_1))
                     }
                 },
+                new Problem(19, "How many Sundays fell on the first of the month during the twentieth century (Jan 1, 1901 to Dec 31, 2000)?")
+                {
+                    new Approach
+                    {
+                        Title = "Gregorian Calendar",
+                        WarmupRounds = 5,
+                        BenchmarkRounds = 1000,
+                        Algorithm = new Algorithm<long>(new Func<long>(problem19_1))
+                    }
+                },
                 new Problem(20, "Find the sum of the digits of the number 100!")
                 {
                     new Approach
@@ -781,6 +791,22 @@ namespace ProjectEuler.Solutions
                     break;
             }
             return total;
+        }
+
+        private long problem19_1()
+        {
+            long sum = 0;
+            GregorianCalendar calendar = new GregorianCalendar(GregorianCalendarTypes.USEnglish);
+
+            for (int year = 1901; year <= 2000; year++)
+            {
+                for (int month = 1; month <= 12; month++)
+                {
+                    if (calendar.GetDayOfWeek(new DateTime(year, month, 1)) == DayOfWeek.Sunday)
+                        sum++;
+                }
+            }
+            return sum;
         }
 
         private IntX problem20_1()
