@@ -45,7 +45,7 @@ namespace ProjectEuler.Solutions
 
                     case "TEST":
                     case "T":
-                        Solution.Problem13();
+                        Console.WriteLine("No test has been specified.");
                         break;
 
                     default:
