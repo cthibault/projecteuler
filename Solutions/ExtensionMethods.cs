@@ -78,7 +78,21 @@ namespace ProjectEuler
                 return false;
 
             double maxSearch = Math.Sqrt(number);
-            for (int i = 2; i <= maxSearch; i++)
+            for (double i = 2; i <= maxSearch; i++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
+        public static bool IsPrime(this long number)
+        {
+            if (number < 2)
+                return false;
+
+            double maxSearch = Math.Sqrt(number);
+            for (long i = 2; i <= maxSearch; i++)
             {
                 if (number % i == 0)
                     return false;
@@ -124,7 +138,6 @@ namespace ProjectEuler
         public static double TriangleNumber(this double term)
         {
             //UNDONE: Error: ran into StackOverflow error on term 10308
-            //chose to use recursion for fun
             //return _triangleNumberRecursive(term);
 
             return _triangleNumberIterative(term);
